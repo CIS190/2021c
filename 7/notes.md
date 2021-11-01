@@ -114,22 +114,7 @@
   - `-s` removes debugging information, and `-S` generates assembly instead of an executable.
   - You can see that the answer is precomputed and stored in the assembly, not computed on demand.
 
-## Template specialization
-
-[`specialization.cpp`](specialization.cpp)
-
-- Templates can have custom code for specific instantiations.
-- `template <>` is required, to tell the compiler the class/function is a template.
-- The specializations must come after the general template declaration.
-- e.g. `vector<bool>`
-
-[`specialization_concepts.cpp`](specialization_concepts.cpp)
-
-- Using type constraints we can also write specializations generically.
-- The compiler will pick the most specific version of the function to call based on the definitions of the constraints, or give an ambiguity error if there is no most specific version.
-- By unfolding the definitions of the iterator concepts, the compiler can tell that vector iterators are both `forward_iterator`s and `random_access_iterator`s, but that `random_access_iterator`s are more specific. If you comment out the random access version, then the forward iterator version will be called for the vector line.
-
-### Template metaprogramming
+## Template metaprogramming
 
 - Metaprogramming is where programs can themselves deal with programs as data.
 - Templates are already an instance of metaprogramming -- they generate code for you.
