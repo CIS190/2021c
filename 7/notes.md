@@ -62,7 +62,7 @@
 
 - Concepts can also combine other concepts, or use `requires` expressions (a different use of `requires` than before), which describe what operations should be defined (among other things, but we won't go into the other things `requires` can do).
   - `requires` expressions can be used as a constraint on its own, but will be written as `template<typename T> requires requires (T x) {x + x;}`.
-- The concept can replace `typename` if it takes one type argument.
+- The concept can replace `typename` if the first template argument is filled in by the type, and teh remaining arguments (if any) are filled in manually.
 - Built-in concepts to the standard library can be found [here](https://en.cppreference.com/w/cpp/concepts).
   - These concepts often have some _semantic_ meaning on top of the _syntactic_ ones in the definition. For example this could be things like `addable` ensuring that `a + b == b + a`. Such constraints are only in the documentation, and not checked by the compiler.
 
