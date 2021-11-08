@@ -26,7 +26,7 @@
   - [Asio](https://www.boost.org/doc/libs/1_77_0/doc/html/boost_asio.html) is a go-to library for doing low-level networking.
   - Many standard library features started off as libraries in Boost.
 
-- For 3D graphics, the lowest-level options are [Direct3D (for Windows)](https://docs.microsoft.com/en-us/windows/win32/direct3d) and [OpenGL (cross-platform)](https://www.opengl.org//). Higher-level libraries include
+- For 3D graphics, the lowest-level options are [Direct3D (for Windows)](https://docs.microsoft.com/en-us/windows/win32/direct3d) and [OpenGL (cross-platform)](https://www.opengl.org//). [Ogre3D](https://www.ogre3d.org/) is a higher-level option.
 
 - The above options can also be used for 2D graphics, but for a higher-level option [SFML](https://www.sfml-dev.org/index.php) is a good choice. [SDL](https://www.libsdl.org/) is a similar option but is a C library.
 
@@ -162,25 +162,3 @@
     - Others include `greater<Key>`, `less_equal<Key>`, and `greater_equal<Key>`.
 - `map` doesn't use `operator==` to check for equality; we _only_ require an ordering.
   - If `!(a < b) && !(b < a)` then the `map` (if it was using `less`) considers `a` and `b` equivalent.
-
-### Lambda expressions
-
-[`lambda.cpp`](lambda.cpp)
-
-- A lambda expression is shorthand for declaring a function object.
-- Unspecified type (you have to use `auto`!).
-  - If you need to write down the type of the lambda (e.g. if you want to use a lambda as the comparison object for `map` or a hash object), you can use `decltype`.
-
-[`capture.cpp`](capture.cpp)
-
-- `[]` is the _capture list_ of the lambda expression.
-  - It allows the body of the lambda to access variables outside it.
-  - `[limit]` captures `limit` by value.
-  - `[&limit]` captures `limit` by reference.
-  - `[=]` and `[&]` capture _everything_ by value and reference respectively.
-  - A comma delimited list can customize which variables are captures by value or by reference.
-
-[`generic_lambda.cpp`](generic_lambda.cpp)
-
-- You can write generic lambdas using `auto` for its arguments.
-- If necessary, you can use the syntax `-> T` after the `)` to specify that the lambda has return type T. When dealing with generic lambdas, often `decltype` is useful here.

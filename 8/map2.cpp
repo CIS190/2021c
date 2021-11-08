@@ -19,6 +19,11 @@ public:
     {
         return !(*this < o); // This implementation is incorrect! If this was for sorting, it wouldn't matter.
     }
+
+	bool operator==(const test & o) const
+	{
+		return i == o.i; // never used by map
+	}
 };
 
 int main()
