@@ -1,9 +1,9 @@
 #include <iostream>
+#include <concepts>
 
 using namespace std;
 
-// Expect p to be callable as a function T -> bool
-template<typename P, typename T>
+template<typename T, predicate<T> P>
 bool algo(P p, T i)
 {
     return p(i);
@@ -13,7 +13,7 @@ int main()
 {
     int limit = 10;
 
-    auto comparison = [&](int i)
+	auto comparison = [&](int i)
                       {
                           return i < limit;
                       };

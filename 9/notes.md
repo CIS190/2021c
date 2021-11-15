@@ -89,6 +89,22 @@
 - Other common higher-order functions are available as well
   - e.g. `accumulate` (in `<numeric>`) is a fold, `transform` is a map
 
+### Parallel algorithms
+
+[`execution.cpp`](execution.cpp)
+
+- Most functions also accept an _execution policy_ (as the first argument), which allows for parallelization.
+- If an execution policy is not specified, `execution::seq` (sequential) is the default.
+- `execution::par`
+  - Permits the algorithm to be parallelized.
+- `execution::par_unseq`
+  - Permits the algorithm to be parallelized _and_ vectorized (unsequenced execution on a single thread, using [SIMD](https://en.wikipedia.org/wiki/SIMD) instructions.
+  - Can break some synchronization methods
+- These execution policies are _guidelines_ to the compiler. It is not guaranteed that using them will actually generate parallel code. The compiler can always fall back to sequential execution.
+- Execution policies are badly supported by `g++`. It was implemented in `g++ 9.1` (in 2019) using the Intel TBB library (`-ltbb` flag at the end of the command to link the library).
+  - This code is unlikely to run on your machine without installing anything new.
+  - Use the instructions at [this link](https://solarianprogrammer.com/2019/05/09/cpp-17-stl-parallel-algorithms-gcc-intel-tbb-linux-macos/) to install the dependencies.
+
 ### Function types
 
 [`recursion.cpp`](recursion.cpp)
